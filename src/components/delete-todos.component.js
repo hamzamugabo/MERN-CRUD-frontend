@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class Delete extends Component {
+export default class DeleteAll extends Component {
 
     constructor(props) {
         super(props);
@@ -13,11 +13,12 @@ export default class Delete extends Component {
 
 
     componentDidMount() {
-        axios.delete('http://localhost:4000/todos/delete/'+this.props.match.params.id)
+        axios.delete('http://localhost:4000/todos/delete/')
             .then(response => {
                if(response){
                    
                 return this.props.history.push('/home')
+                
                }else{
                    const data = 'not deleted'
                    this.setState({delete:data})

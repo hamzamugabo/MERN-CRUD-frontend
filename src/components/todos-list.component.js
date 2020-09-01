@@ -21,11 +21,25 @@ export default class TodosList extends Component {
 
     constructor(props) {
         super(props);
+        
+    this.onSubmit = this.onSubmit.bind(this);
         this.state = {todos: []};
+    }
+    onSubmit(e) {
+        e.preventDefault();
+        
+        axios.post('http://localhost:4000/todos/delete')
+            .then((res) => {
+                if(res){
+                    axios.get('http://localhost:4000/todos/home')
+                }else{
+                    axios.get('http://localhost:4000/todos/home')
+                }
+            });
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/todos/')
+        axios.get('http://localhost:4000/todos/home')
             .then(response => {
                 this.setState({ todos: response.data });
             })
@@ -43,7 +57,10 @@ export default class TodosList extends Component {
     render() {
         return (
             <div>
+                <p>
                 <h3>Todos List</h3>
+               {/* <strong> <Link to={"/delete/"}>Delete All Todos</Link></strong> */}
+                </p>
                 <table className="table table-striped" style={{ marginTop: 20 }} >
                     <thead>
                         <tr>
