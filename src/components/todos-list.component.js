@@ -57,10 +57,9 @@ export default class TodosList extends Component {
     render() {
         return (
             <div>
-                <p>
                 <h3>Todos List</h3>
                {/* <strong> <Link to={"/delete/"}>Delete All Todos</Link></strong> */}
-                </p>
+                
                 <table className="table table-striped" style={{ marginTop: 20 }} >
                     <thead>
                         <tr>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import axios from "axios";
 export default class Register extends Component {
   constructor(props) {
     super(props);
@@ -35,41 +35,55 @@ export default class Register extends Component {
   }
 
   onSubmit(e) {
-        e.preventDefault();
-        
-        console.log(`Form submitted:`);
-        console.log(`username: ${this.state.username}`);
-        console.log(`email: ${this.state.email}`);
-        console.log(`password: ${this.state.password}`);
-     
-        const newTodo = {
-            username: this.state.username,
-            email: this.state.email,
-            password: this.state.password,
-        };
+    e.preventDefault();
 
-        axios.post('http://localhost:4000/todos/register', newTodo)
-            .then(res => console.log(res.data));
+    console.log(`Form submitted:`);
+    console.log(`username: ${this.state.username}`);
+    console.log(`email: ${this.state.email}`);
+    console.log(`password: ${this.state.password}`);
 
-        this.setState({
-            username: '',
-            email: '',
-            password: '',
-        })
-        axios.post('http://localhost:4000/todos/login', newTodo)
-    }
+    const newTodo = {
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password,
+    };
 
-    componentDidMount() {
-        axios.get('http://localhost:4000/todos')
-            .then(response => {
-                this.setState({ todos: response.data });
-            })
-            .catch(function (error){
-                console.log(error);
-            })
-    }
+    axios
+      .post("http://localhost:4000/todos/register", newTodo)
+      .then((res) => {
+        if(res==="registered successfully"){
+          
+        console.log(res.data)
+        return this.props.history.push("/login");
+
+        }
+        else{
+          console.log(res.data)
+          alert(res.data)
+        }
+        });
+
+    this.setState({
+      username: "",
+      email: "",
+      password: "",
+    });
+   
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:4000/todos")
+      .then((response) => {
+        this.setState({ todos: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
   render() {
     return (
+      <div className="container">
       <div style={{ marginTop: 10 }}>
         <h3>Register</h3>
         <form onSubmit={this.onSubmit}>
@@ -102,13 +116,10 @@ export default class Register extends Component {
           </div>
 
           <div className="form-group">
-            <input
-              type="submit"
-              value="Register"
-              className="btn btn-primary"
-            />
+            <input type="submit" value="Register" className="btn btn-primary" />
           </div>
         </form>
+      </div>
       </div>
     );
   }

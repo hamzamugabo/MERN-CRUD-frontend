@@ -19,7 +19,7 @@ import Login from "./auth/Login";
 
 import logo from "./logo.png";
 
-class App extends Component {
+class Index extends Component {
   render() {
     return (
       <Router>
@@ -53,7 +53,7 @@ class App extends Component {
                   </Link>
                 </li>{" "}
                 <li className="navbar-item">
-                  <Link to="/" className="nav-link">
+                  <Link to="/register" className="nav-link">
                     Register
                   </Link>
                 </li>{" "}
@@ -72,7 +72,7 @@ class App extends Component {
           <Route path="/show/:id" component={View} />
           <Route path="/delete/:id" component={Delete} />
           <Route path="/delete/" component={DeleteAll} />
-          <Route path="/" exact component={Register} />
+          <Route path="/register"  component={Register} />
           <Route path="/login" component={Login} />
         </div>
       </Router>
@@ -80,4 +80,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Index;
